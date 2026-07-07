@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delta Studio</title>
+  <meta name="description" content="UX product design studio" />
+  <link rel="icon" href="assets/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Delta Studio" />
+  <meta property="og:description" content="UX product design studio" />
+  <meta property="og:image" content="assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Project image reveals here on hover (desktop, pointer devices) -->
+  <div class="stage" aria-hidden="true">
+    <img class="stage__img" alt="" />
+  </div>
+
+  <main class="layout">
+    <!-- Left column: mark + studio line -->
+    <div class="col col--intro">
+      <a class="mark" href="/" aria-label="Delta Studio — home">&#9650;</a>
+      <p class="intro">
+        Delta is a product design studio by
+        <a class="intro__link" href="https://www.linkedin.com/" target="_blank" rel="noopener">Alberto</a>
+        &amp;
+        <a class="intro__link" href="https://www.linkedin.com/" target="_blank" rel="noopener">Rob</a>
+      </p>
+    </div>
+
+    <!-- Right column: client list. Each item reveals its image on hover. -->
+    <nav class="col col--clients" aria-label="Selected clients">
+      <ul class="clients">
+        <li><a class="client" href="#" data-img="assets/citizenlab.png">CitizenLab</a></li>
+        <li><a class="client" href="#" data-img="assets/bitfinex.png">Bitfinex</a></li>
+        <li><a class="client" href="#" data-img="assets/usaid.png">USAID</a></li>
+        <li><a class="client" href="#" data-img="assets/finbox.png">Finbox</a></li>
+        <li><a class="client" href="#" data-img="assets/replai.png">Replai</a></li>
+        <li><a class="client" href="#" data-img="assets/tether.png">Tether</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

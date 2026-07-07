@@ -1,0 +1,148 @@
+:root {
+  --bg: #000;
+  --fg: #ffffff;
+  --mark: #fafafa;
+  --accent: #ff44d4;         /* hover magenta, sampled from the live site */
+  --size-client: 28px;
+  --size-intro: 18px;
+  --size-mark: 24px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ---- Layout: two columns, top-aligned, pinned into the upper-left ---- */
+.layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 35vw 1fr;   /* right column lands at ~50% of the viewport */
+  align-items: start;
+  padding: 79px 6vw 6vw 14.8vw;
+  min-height: 100vh;
+}
+
+.col--intro { max-width: 22rem; }
+
+/* client list aligns with the studio line, not the mark above it */
+.col--clients { padding-top: 52px; }
+
+/* ---- Mark ---- */
+.mark {
+  display: inline-block;
+  color: var(--mark);
+  font-size: var(--size-mark);
+  line-height: 1;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+
+/* ---- Intro line ---- */
+.intro {
+  margin: 0;
+  font-size: var(--size-intro);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.intro__link {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 160ms ease;
+}
+.intro__link:hover { color: var(--accent); }
+
+/* ---- Client list ---- */
+.clients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.client {
+  display: inline-block;
+  color: var(--fg);
+  font-size: var(--size-client);
+  font-weight: 300;
+  line-height: 39.2px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+/* hover / keyboard focus both recolour the name */
+.client:hover,
+.client:focus-visible { color: var(--accent); }
+
+.client:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- Hover image stage ---- */
+.stage {
+  position: fixed;
+  z-index: 1;
+  left: 14.8vw;
+  top: 300px;
+  width: min(38vw, 520px);
+  pointer-events: none;
+}
+
+.stage__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(8px) scale(0.99);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.stage.is-visible .stage__img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .stage__img,
+  .client,
+  .intro__link { transition: none; }
+  .stage__img { transform: none; }
+}
+
+/* ---- Touch / no-hover devices: no reveal stage ---- */
+@media (hover: none) {
+  .stage { display: none; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 48px 28px;
+    min-height: auto;
+  }
+  .col--intro { max-width: none; }
+  :root { --size-client: 30px; }
+  .client { line-height: 1.5; }
+}
